@@ -1,0 +1,25 @@
+@import "./base.scss";
+
+.nav-link {
+  color: #0a77dd;
+
+  &.active {
+    background-color: inherit !important;
+    color: #0a77dd !important;
+  }
+
+  &:hover, &:focus {
+    color: #0a77dd !important;
+  }
+}
+
+// svg.icon {
+//   width: 25px;
+//   height: 25px;
+// }
+
+// body {
+//   font-family: "Playfair Display", Georgia, "Times New Roman", serif, sans-serif;
+//   font-size: 2.25rem;
+//   /* color: rgb(180, 27, 27); */
+// }
