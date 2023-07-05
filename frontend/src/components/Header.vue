@@ -12,13 +12,17 @@
                     </button>
                     <ul class="dropdown-menu p-0">
                         <div class="p-0">
-                            <table id="hmo_not_table" class="table table-stripped table-hover table-responsive">
+                            <DataTableVue3
+                            :data="data" 
+                            :options="options"
+                            ref="table"
+                            class="table table-stripped table-hover table-responsive">
                                 <thead>
                                     <tr class="p-0">
                                         <th>Notifications</th>
                                     </tr>
                                 </thead>
-                            </table>
+                            </DataTableVue3>
                         </div>
                     </ul>
                     </div>
@@ -46,9 +50,31 @@
 </template>
 
 <script setup>
-import DataTable from 'datatables.net-dt'
+import DataTableVue3 from 'datatables.net-vue3'
+import DataTablesBs5 from 'datatables.net-bs5'
 import { RouterLink } from 'vue-router'
 import { onMounted, reactive, ref } from 'vue';
+
+DataTableVue3.use(DataTablesBs5)
+
+let dt
+const table = ref()
+ 
+const drawNotification = () => {
+    dt = table.value.dt;
+    console.log(dt.draw)
+   }
+onMounted(function () {
+    drawNotification()
+    // dt = table.value.dt;
+    // console.log(dt.draw)
+})
+
+   
+    
+
+
+
 
 const data = reactive([
     ['Approve for Kemisola Avon'],
@@ -62,21 +88,18 @@ const num = reactive({
     num: 0
 })
 
-const table = ref(null)
 
 
-const drawNotification = () => {
 
-    table = new DataTable('#hmo_not_table', {
-        data: data,
+   const options = {
         lengthChange: false,
         paging: false,
         searching: false,
         orderMulti: false,
         ordering: false,
         info: false,
-    })
-}
+    }
+
 
 
 
