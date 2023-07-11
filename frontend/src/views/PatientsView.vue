@@ -5,6 +5,7 @@ import { onMounted, reactive, ref } from 'vue'
 import PatientModal from '../components/PatientModals/PatientModal.vue'
 import DetailsPatientsModal from '../components/PatientModals/DetailsPatientsModal.vue'
 import SponsorsModal from '../components/SponsorsModal.vue'
+import InitiatePatientModal from '../components/PatientModals/InitiatePatientModal.vue'
 import { Modal } from 'bootstrap'
 import { clearValues } from '../helpers/formhelper'
 
@@ -57,6 +58,13 @@ const state = reactive({
             id: "detailsSponsorModal",
             title: "Details"
         },
+    },
+    initiatePatientModal: {
+        id: '23',
+        data: [],
+        btn: null,
+        hospitalNumber: 'SH23/0960',
+        patientName: 'Stephanie Nyen Okoye'
     }
 })
 
@@ -101,10 +109,15 @@ onMounted(() => {
 
     })
 
+    state.initiatePatientModal = new Modal('#initiatePatientModal', {
+
+    })
+
     state.patientModal.register.btn = state.patientModal.register._element.querySelector('.register-patient-btn')
     state.patientModal.update.btn = state.patientModal.update._element.querySelector('.update-patient-btn')
     state.sponsorModal.create.btn = state.sponsorModal.create._element.querySelector('.create-sponsor-btn')
     state.sponsorModal.update.btn = state.sponsorModal.update._element.querySelector('.update-sponsor-btn')
+    state.initiatePatientModal.btn = state.initiatePatientModal._element.querySelector('.initiate-patient-btn')
 
     state.patientModal.register.btn.addEventListener('click', function () {
         const data = getModalFormData(state.patientModal.register)
@@ -132,11 +145,16 @@ onMounted(() => {
         console.log(data)
     })
 
+    state.initiatePatientModal.btn.addEventListener('click', function () {
+        state.initiatePatientModal.hide()
+    })
+
     setTimeout(() => {
         document.querySelector('#DataTables_Table_1').addEventListener('click', function (event) {
             const updatePatientBtn = event.target.closest('.edit-patient-btn')
             const deletePatientBtn = event.target.closest('.delete-patient-btn')
-            const patientDetailsBtn = event.target.closest('.patient-details')
+            const patientDetailsBtn = event.target.closest('.patient-details-btn')
+            const initiatePatientBtn = event.target.closest('.initiate-patient-btn')
 
             if (updatePatientBtn) {
                 state.patientModal.update.show()
@@ -148,6 +166,10 @@ onMounted(() => {
 
             if (patientDetailsBtn) {
                 state.patientModal.details.show()
+            }
+
+            if (initiatePatientBtn) {
+                state.initiatePatientModal.show()
             }
 
         })
@@ -175,6 +197,7 @@ onMounted(() => {
             const editPatientBtn = event.target.closest('.edit-patient-btn')
             const deletePatientBtn = event.target.closest('.delete-patient-btn')
             const patientDetailsBtn = event.target.closest('.patient-details')
+            const initiatePatientBtn = event.target.closest('.initiate-patient-btn')
 
             if (editPatientBtn) {
                 state.patientModal.update.show()
@@ -186,6 +209,10 @@ onMounted(() => {
 
             if (patientDetailsBtn) {
                 state.patientModal.details.show()
+            }
+            
+            if (initiatePatientBtn) {
+                state.initiatePatientModal.show()
             }
 
         })
@@ -216,7 +243,7 @@ function getModalFormData(modal) {
 }
 
 const data = [
-    ['<a role="button" class="text-decoration-none patient-details" href="#">Chioma Jessica Okeke</a>', '08034241243', 'female', '13/sept/1991', 'Cash', 'Self', 'Inactive', `<div class="d-flex flex-"><button class="btn btn-outline-primary edit-patient-btn"><i class="bi bi-pencil-fill"></i></button><button class="ms-1 btn btn-outline-primary delete-patient-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
+    ['<a role="button" class="text-decoration-none patient-details-btn" href="#">Chioma Jessica Okeke</a>', '08034241243', 'female', '13/sept/1991', 'Cash', 'Self', 'Inactive', `<div class="d-flex flex-"><button class="btn btn-outline-primary edit-patient-btn"><i class="bi bi-pencil-fill"></i></button><button class="ms-1 btn btn-outline-primary delete-patient-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary initiate-patient-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
     ['David Ayuba Baba', '08054241298', 'male', '01/june/1996', 'Credit', 'HMO', 'Active', `<div class="d-flex flex-"><button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
     ['Mimidoo Monica Odue', '08034241243', 'female', '13/sept/1991', 'Cash', 'Self', 'Inactive', `<div class="d-flex flex-"><button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
     ['Precious Ori Odumu', '08054241298', 'female', '01/june/1996', 'Credit', 'HMO', 'Active', `<div class="d-flex flex-"><button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
@@ -233,10 +260,10 @@ const data = [
 ]
 
 const data2 = [
-    ['<a role="button" class="text-decoration-none patient-details" href="#">David Ayuba Baba</a>', '08054241298', 'male', '01/june/1996', 'Credit', 'HMO', 'Active', `<div class="d-flex flex-"><button  class="btn btn-outline-primary edit-patient-btn"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-patient-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
+    ['<a role="button" class="text-decoration-none patient-details" href="#">David Ayuba Baba</a>', '08054241298', 'male', '01/june/1996', 'Credit', 'HMO', 'Active', `<div class="d-flex flex-"><button  class="btn btn-outline-primary edit-patient-btn"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-patient-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary initiate-patient-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
     ['Mimidoo Monica Odue', '08034241243', 'female', '13/sept/1991', 'Cash', 'Self', 'Inactive', `<div class="d-flex flex-"><button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
     ['Precious Ori Odumu', '08054241298', 'female', '01/june/1996', 'Credit', 'HMO', 'Active', `<div class="d-flex flex-"><button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
-    ['<a role="button" class="text-decoration-none patient-details" href="#">Collins Adeke Ujah</a>', '08054241298', 'male', '01/june/1996', 'Credit', 'HMO', 'Active', `<div class="d-flex flex-"><button class="btn btn-outline-primary edit-patient-btn"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
+    ['<a role="button" class="text-decoration-none patient-details" href="#">Collins Adeke Ujah</a>', '08054241298', 'male', '01/june/1996', 'Credit', 'HMO', 'Active', `<div class="d-flex flex-"><button class="btn btn-outline-primary edit-patient-btn"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-patient-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary initiate-patient-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
     ['Ogri Uba Ohimini', '08054241298', 'male', '01/june/1996', 'Credit', 'HMO', 'Active', `<div class="d-flex flex-"><button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
     ['Terso Ayu Gbaso', '08054241298', 'male', '01/june/1996', 'Credit', 'HMO', 'Aactive', `<div class="d-flex flex-"><button class="btn btn-outline-primary"><i class="bi bi-pencil-fill"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="fa fa-minus-circle" aria-hidden="true"></i></button><button type="submit" class="ms-1 btn btn-outline-primary delete-jobtype-btn"><i class="bi bi-arrow-90deg-right"></i></i></button></div>`],
 ]
@@ -260,6 +287,7 @@ const sponsorData = [
     <SponsorsModal :id="state.sponsorModal.create.id" title="Create Sponsor" :isUpdate=false />
     <SponsorsModal :id="state.sponsorModal.update.id" title="Update Sponsor" :isUpdate=true />
     <SponsorsModal :id="state.sponsorModal.details.id" title="Details" :isUpdate=true />
+    <InitiatePatientModal patient-id="32" patient-name="Stephanie Nyen Okoye" hospital-number="SH19/0960" />
 
     <div class="container p-1 mt-5">
         <div class="text-start mb-4">
