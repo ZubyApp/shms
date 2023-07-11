@@ -51,8 +51,8 @@ const addNotification = () => {
         <div class="container">
             <header class="border-bottom lh-1 py-3">
                 <div class="row flex-nowrap justify-content-between align-items-center">
-                    <div class="col-6 text-start text-primary">
-                        <RouterLink to="/" class="blog-header-logo text-decoration-none fs-1"><i class="bi bi-hospital"></i><span class="fw-bold pl-4"> S</span>andra <span class="fw-bold pl-4">H</span>ospital</RouterLink>
+                    <div class="col-6 text-start">
+                        <RouterLink to="/" class="blog-header-logo text-decoration-none fs-1 text-black"><i class="bi bi-hospital text-primary"></i><span class="fw-bold pl-4"> S</span>andra <span class="fw-bold pl-4">H</span>ospital</RouterLink>
                     </div>
                     <div class="col-6 d-flex justify-content-end align-items-center">
                     <div class="btn-group mx-2">
@@ -84,7 +84,7 @@ const addNotification = () => {
             <div class="nav-scroller py-1 mb-3 border-bottom">
                 <nav class="nav nav-underline justify-content-between fs-5 fw-semibold">
                     <RouterLink to="/patients" active-class="active" class="nav-item nav-link link-body-emphasis">Patients</RouterLink>
-                    <RouterLink to="/doctors" class="nav-item nav-link link-body-emphasis">Doctors</RouterLink>
+                    <RouterLink to="/doctors" active-class="active" class="nav-item nav-link link-body-emphasis">Doctors</RouterLink>
                     <a class="nav-item nav-link link-body-emphasis" href="#">Nurses</a>
                     <a class="nav-item nav-link link-body-emphasis" href="#">Laboratory</a>
                     <a class="nav-item nav-link link-body-emphasis" href="#">Pharmacy</a>
@@ -104,14 +104,14 @@ const addNotification = () => {
 .blog-header-logo {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif, sans-serif;
 }
-/* .nav-scroller {
+.nav-scroller {
     position: relative;
     z-index: 2;
     height: 3.75rem;
     overflow-y: hidden;
-} */
+}
 
-/* .nav-scroller .nav {
+.nav-scroller .nav {
     display: flex;
     flex-wrap: nowrap;
     padding-bottom: 1rem;
@@ -120,6 +120,6 @@ const addNotification = () => {
     text-align: center;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
-} */
+}
 
 </style>
