@@ -4,7 +4,7 @@ import DataTablesBs5 from 'datatables.net-bs5'
 import { onMounted, reactive, ref } from 'vue'
 import { Modal } from 'bootstrap'
 import { clearValues } from '../helpers/formhelper'
-import ConsultationModal from '../components/DoctorModals/ConsultationModal.vue';
+import newConsultationModal from '../components/DoctorModals/NewConsultationModal.vue';
 
 DataTableVue3.use(DataTablesBs5)
 
@@ -72,7 +72,7 @@ const waitingList = [
 </script>
 
 <template>
-    <ConsultationModal id="newConsultationModal" title="New Consultation" :isUpdate=false />
+    <newConsultationModal id="newConsultationModal" title="New Consultation" :isUpdate=false />
     <div class="container p-1 mt-5">
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
             aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -115,14 +115,14 @@ const waitingList = [
                 <i class="bi bi-list-check"></i>
                 Waiting List
             </button>
-            <button type="button" @click="openPatientModal" class="btn btn-primary text-white mx-2">
+            <!-- <button type="button" @click="openPatientModal" class="btn btn-primary text-white mx-2">
                 <i class="bi bi-plus-circle me-1"></i>
                 New Patient
             </button>
             <button type="button" @click="openSponsorModal" class="btn btn-primary text-white">
                 <i class="bi bi-plus-circle me-1"></i>
                 New Sponsor
-            </button>
+            </button> -->
         </div>
 
         <div>
