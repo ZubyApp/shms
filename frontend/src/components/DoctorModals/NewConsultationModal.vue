@@ -214,21 +214,24 @@ onMounted(() => {
                                 </div>
                                 <div class="col-xl-4 themed-grid-col">
                                     <div class="input-group mb-1">
-                                        <span class="input-group-text" id="basic-addon1">History of Presenting <br> Complain</span>
+                                        <span class="input-group-text" id="basic-addon1">History of Presenting <br>
+                                            Complain</span>
                                         <textarea type="text" name="atopy" class="form-control" aria-label="atopy"
                                             aria-describedby="basic-addon1" value="Asthsma"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 themed-grid-col">
                                     <div class="input-group mb-1">
-                                        <span class="input-group-text" id="basic-addon1">Past Medical/<br>Surgical History</span>
+                                        <span class="input-group-text" id="basic-addon1">Past Medical/<br>Surgical
+                                            History</span>
                                         <textarea type="text" name="atopy" class="form-control" aria-label="atopy"
                                             aria-describedby="basic-addon1" value="Asthsma"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-xl-4 themed-grid-col">
                                     <div class="input-group mb-1">
-                                        <span class="input-group-text" id="basic-addon1">Obstetrics/<br>Gynecological History</span>
+                                        <span class="input-group-text" id="basic-addon1">Obstetrics/<br>Gynecological
+                                            History</span>
                                         <textarea type="text" name="atopy" class="form-control" aria-label="atopy"
                                             aria-describedby="basic-addon1" value="Asthsma"></textarea>
                                     </div>
@@ -294,23 +297,21 @@ onMounted(() => {
                         </div>
                         <div class="mb-2">
                             <div class="row">
-                            <span class="fw-semibold">Investigation and Management</span>
-                            <div class="col-xl-4 themed-grid-col">
-                                <div class="input-group mb-1">
-                                    <span class="input-group-text" id="basic-addon1">Product<br>/Service</span>
-                                    <input type="text" name="surename" class="form-control"
-                                            placeholder="Search" aria-label="Client name" aria-describedby="basic-addon1"
-                                            value="">
+                                <span class="fw-semibold">Investigation and Management</span>
+                                <div class="col-xl-4 themed-grid-col">
+                                    <div class="input-group mb-1">
+                                        <span class="input-group-text" id="basic-addon1">Product<br>/Service</span>
+                                        <input type="text" name="surename" class="form-control" placeholder="Search"
+                                            aria-label="Client name" aria-describedby="basic-addon1" value="">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 themed-grid-col">
-                                <div class="input-group mb-1">
-                                    <span class="input-group-text" id="basic-addon1">Prescription<br>Details</span>
-                                    <input type="text" name="surename" class="form-control"
-                                            placeholder="Search" aria-label="Client name" aria-describedby="basic-addon1"
-                                            value="">
+                                <div class="col-xl-4 themed-grid-col">
+                                    <div class="input-group mb-1">
+                                        <span class="input-group-text" id="basic-addon1">Prescription<br>Details</span>
+                                        <input type="text" name="surename" class="form-control" placeholder="Search"
+                                            aria-label="Client name" aria-describedby="basic-addon1" value="">
+                                    </div>
                                 </div>
-                            </div>
                             </div>
                         </div>
                     </div>
