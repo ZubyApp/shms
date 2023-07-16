@@ -1,23 +1,24 @@
 <script setup>
 import { vMaska } from "maska"
-import { computed, onMounted } from "vue";
+import { onMounted } from "vue";
 
 const modal = defineProps({
     id: String,
-    title: String,
-    isUpdate: Boolean
+    title: String
 })
 
-const buttonClasses = computed(() =>{
-    return modal.isUpdate ? 'update-patient-btn' : 'register-patient-btn'
-})
+
+
+onMounted(() => {
+    // console.log(modal.id)
+})  
 
 </script>
 
 <template>
     <div class="container">
-        <div class="modal fade " :id="modal.id" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+        <div class="modal fade modal-xl" :id="modal.id" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title fs-4 text-primary">{{ modal.title }}</h5>
@@ -33,7 +34,7 @@ const buttonClasses = computed(() =>{
                                     <div class="input-group mb-1">
                                         <span class="input-group-text" id="hospital-number">Hospital Number<span class="text-danger">*</span></span>
                                         <input type="text" v-maska data-maska="SH##/####@" name="hospitalNumber" class="form-control"
-                                            placeholder="SH81/0000A" aria-label="hospitalNumber" aria-describedby="basic-addon1" :readonly="isUpdate">
+                                            placeholder="SH81/0000A" aria-label="hospitalNumber" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                                 <div class="col-xl-4 themed-grid-col">
@@ -424,10 +425,9 @@ const buttonClasses = computed(() =>{
                             <i class="bi bi-x-circle me-1"></i>
                             Close
                         </button>
-                        <button type="button" class="btn bg-primary text-white" :class="buttonClasses">
+                        <button type="button" class="btn bg-primary text-white register-patient-btn">
                             <i class="bi bi-check-circle me-1"></i>
-                            <span v-if="isUpdate">Update</span>
-                            <span v-else>Register</span>
+                            Register
                         </button>
                     </div>
                 </div>

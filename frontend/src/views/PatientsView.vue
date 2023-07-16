@@ -1,7 +1,7 @@
 <script setup>
 import DataTableVue3 from 'datatables.net-vue3'
 import DataTablesBs5 from 'datatables.net-bs5'
-import { onMounted, reactive, ref } from 'vue'
+import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 import PatientModal from '../components/PatientModals/PatientModal.vue'
 import DetailsPatientsModal from '../components/PatientModals/DetailsPatientsModal.vue'
 import SponsorsModal from '../components/SponsorsModal.vue'
@@ -84,7 +84,18 @@ const drawSponsorsTable = () => {
     console.log('drawn sponsors')
 }
 
+const destroyPatientsTable = () => {
+    allPatientsDatatable = allPatientsTable.value.dt
+    ActivePatientsDatatable = ActivePatientsTable.value.dt
+
+    allPatientsDatatable.destroy(true)
+    ActivePatientsDatatable.destroy(true)
+    console.log('destroy patients')
+}
+
 onMounted(() => {
+    drawPatientsTables()
+
     state.patientModal.register = new Modal('#registerPatientModal', {
 
     })
@@ -149,7 +160,7 @@ onMounted(() => {
         state.initiatePatientModal.hide()
     })
 
-    setTimeout(() => {
+    
         document.querySelector('#DataTables_Table_1').addEventListener('click', function (event) {
             const updatePatientBtn = event.target.closest('.edit-patient-btn')
             const deletePatientBtn = event.target.closest('.delete-patient-btn')
@@ -210,15 +221,16 @@ onMounted(() => {
             if (patientDetailsBtn) {
                 state.patientModal.details.show()
             }
-            
+
             if (initiatePatientBtn) {
                 state.initiatePatientModal.show()
             }
 
         })
+})
 
-
-    }, 3000)
+onBeforeUnmount(() => {
+    destroyPatientsTable()
 })
 
 function openPatientModal() {
@@ -321,7 +333,7 @@ const sponsorData = [
                     tabindex="0">
                     <div class="py-4">
                         <DataTableVue3 :data="data" ref="allPatientsTable"
-                            class="table table-hover table-striped align-middle table-lg">
+                            class="table table-hover align-middle table-sm">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -387,7 +399,7 @@ const sponsorData = [
                         <DataTableVue3 :data="data2" ref="ActivePatientsTable" class="table table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th style="width: 100px;rem">Name</th>
+                                    <th>Name</th>
                                     <th>Phone</th>
                                     <th>Sex</th>
                                     <th>DOB</th>
@@ -414,5 +426,8 @@ const sponsorData = [
                     </div>
                 </div>
             </div>
+        </div>
+        
     </div>
-</div></template>
+</template>
+

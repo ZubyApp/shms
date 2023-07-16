@@ -16,8 +16,8 @@ const buttonClasses = computed(() =>{
 
 <template>
     <div class="container">
-        <div class="modal fade " :id="modal.id" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+        <div class="modal fade modal-xl" :id="modal.id" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title fs-4 text-primary">{{ modal.title }}</h5>
